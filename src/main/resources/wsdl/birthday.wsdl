@@ -1,0 +1,97 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.webservicesoap.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.webservicesoap.com" targetNamespace="http://www.webservicesoap.com">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.webservicesoap.com">
+            <!--     target namespace diatas bebas mau apa saja  -->
+            <xs:element name="birthdayRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="day" type="xs:int"/>
+                        <xs:element name="month" type="xs:int"/>
+                        <xs:element name="year" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="birthdayNameRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="fullName" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ageResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="age" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="birthDateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element name="fullName" type="xs:string"/>
+                        <xs:element name="birthDate" type="xs:date"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="birthdayNameRequest">
+        <wsdl:part element="tns:birthdayNameRequest" name="birthdayNameRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ageResponse">
+        <wsdl:part element="tns:ageResponse" name="ageResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="birthDateResponse">
+        <wsdl:part element="tns:birthDateResponse" name="birthDateResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="birthdayRequest">
+        <wsdl:part element="tns:birthdayRequest" name="birthdayRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="BirthdayServicePort">
+        <wsdl:operation name="birthdayName">
+            <wsdl:input message="tns:birthdayNameRequest" name="birthdayNameRequest"> </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="age">
+            <wsdl:output message="tns:ageResponse" name="ageResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="birthDate">
+            <wsdl:output message="tns:birthDateResponse" name="birthDateResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="birthday">
+            <wsdl:input message="tns:birthdayRequest" name="birthdayRequest"> </wsdl:input>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BirthdayServicePortSoap11" type="tns:BirthdayServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="birthdayName">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="birthdayNameRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="age">
+            <soap:operation soapAction=""/>
+            <wsdl:output name="ageResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="birthDate">
+            <soap:operation soapAction=""/>
+            <wsdl:output name="birthDateResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="birthday">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="birthdayRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BirthdayServicePortService">
+        <wsdl:port binding="tns:BirthdayServicePortSoap11" name="BirthdayServicePortSoap11">
+            <soap:address location="http://localhost:8080/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
