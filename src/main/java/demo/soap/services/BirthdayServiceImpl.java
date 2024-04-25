@@ -1,6 +1,8 @@
 package demo.soap.services;
 
 import demo.soap.webservice_soap.AgeResponse;
+import demo.soap.webservice_soap.BirthDateResponse;
+import demo.soap.webservice_soap.BirthdayNameRequest;
 import demo.soap.webservice_soap.BirthdayRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -23,5 +25,13 @@ public class BirthdayServiceImpl implements BirthdayService {
         AgeResponse getAgeResponse = (AgeResponse) webServiceTemplate
                 .marshalSendAndReceive("http://localhost:8080/ws", getBirthdayRequest);
         return getAgeResponse;
+    }
+
+    @Override
+    public BirthDateResponse getBirthDate(BirthdayNameRequest birthdayNameRequest) {
+        WebServiceTemplate webServiceTemplate = new WebServiceTemplate(jaxb2Marshaller);
+        BirthDateResponse birthDateResponse = (BirthDateResponse) webServiceTemplate
+                .marshalSendAndReceive("http://localhost:8080/ws", birthdayNameRequest);
+        return birthDateResponse;
     }
 }

@@ -2,6 +2,8 @@ package demo.soap.controllers;
 
 import demo.soap.services.BirthdayService;
 import demo.soap.webservice_soap.AgeResponse;
+import demo.soap.webservice_soap.BirthDateResponse;
+import demo.soap.webservice_soap.BirthdayNameRequest;
 import demo.soap.webservice_soap.BirthdayRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +25,10 @@ public class BirthdayController {
     @PostMapping()
     public ResponseEntity<AgeResponse> getAge(@RequestBody BirthdayRequest getBirthdayRequest) {
         return ResponseEntity.ok(birthdayService.getAge(getBirthdayRequest));
+    }
+
+    @PostMapping("/getBirthDate")
+    public ResponseEntity<BirthDateResponse> getBirthDate(@RequestBody BirthdayNameRequest birthdayNameRequest) {
+        return ResponseEntity.ok(birthdayService.getBirthDate(birthdayNameRequest));
     }
 }
